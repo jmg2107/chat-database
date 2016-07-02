@@ -13,6 +13,7 @@ module.exports.app = app;
 
 // Set what we are listening on.
 app.set('port', 3000);
+console.log('you made it');
 
 // Logging and parsing
 app.use(morgan('dev'));

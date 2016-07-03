@@ -35,7 +35,15 @@ var defaultCorsHeaders = {
 
 module.exports = {
   messages: {
-    get: function (req, res) {}, // a function which handles a get request for all messages
+    get: function (req, res) {
+      var messageArray;
+      models.messages.get(collection => messageArray = collection);
+      //TODO handle response
+
+      res.set(defaultCorsHeaders);
+      res.status(200).end(messageArray);
+
+    }, // a function which handles a get request for all messages
     post: function (req, res) {
 
       //json object
@@ -47,16 +55,25 @@ module.exports = {
       //obj.txt
       console.log("POST body is " + req.body);
       models.messages.post(req.body);
-
+      res.set(defaultCorsHeaders);
+      res.status(201).end();
     } // a function which handles posting a message to the database
   },
 
   users: {
     // Ditto as above
-    get: function (req, res) {},
+    get: function (req, res) {
+      var messageArray;
+      models.users.get(collection => messageArray = collection);
+      //TODO handle response
+
+      res.set(defaultCorsHeaders);
+      res.status(200).end(messageArray);
+
+    },
     post: function (req, res) {
 
-      models.users.post(req.body.username);
+      models.users.post(req.body);
       //TODO handle response
 
       res.set(defaultCorsHeaders);
